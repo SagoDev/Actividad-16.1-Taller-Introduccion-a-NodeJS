@@ -36,14 +36,27 @@ app.post("/people", (req, res) => {
 
 app.put("/people/:index", (req, res) => {
   /* COMPLETA EL CÓDIGO NECESARIO:
-     Para que se pueda actualizar el objeto asociado al índice indicado en la URL 
+    Para que se pueda actualizar el objeto asociado al índice indicado en la URL 
    */
+  let index = parseInt(req.params.index);
+
+  if(index>=0 && index < people.length){
+    people[index] = req.body;
+  }
+
+  res.json(people);
 });
 
 app.delete("/people/:index", (req, res) => {
   /* COMPLETA EL CÓDIGO NECESARIO:
-     Para que se pueda eliminar el objeto asociado al índice indicado en la URL 
-   */
+    Para que se pueda eliminar el objeto asociado al índice indicado en la URL 
+  */
+  let index = parseInt(req.params.index);
+
+  if (index >= 0 && index < people.length) {
+    people.splice(index, 1);
+  }
+  res.json(people);
 });
 
 // Esta línea inicia el servidor para que escuche peticiones en el puerto indicado
