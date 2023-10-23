@@ -41,7 +41,7 @@ app.put("/people/:index", (req, res) => {
   let index = req.params.index; // Guardamos el índice de los parámetros en la URL
 
   for (let property in req.body) {
-    people[index][property] = req.body[property];
+    people[index-1][property] = req.body[property];
   } // Recorremos el body de la request para actualizar los campos del elemento seleccionado
 
   res.json(people); // El servidor responde con el array actualizado
