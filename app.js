@@ -38,13 +38,13 @@ app.put("/people/:index", (req, res) => {
   /* COMPLETA EL CÓDIGO NECESARIO:
     Para que se pueda actualizar el objeto asociado al índice indicado en la URL 
    */
-  let index = parseInt(req.params.index);
+  let index = req.params.index; // Guardamos el índice de los parámetros en la URL
 
-  if(index>=0 && index < people.length){
-    people[index] = req.body;
-  }
+  for (let property in req.body) {
+    people[index][property] = req.body[property];
+  } // Recorremos el body de la request para actualizar los campos del elemento seleccionado
 
-  res.json(people);
+  res.json(people); // El servidor responde con el array actualizado
 });
 
 app.delete("/people/:index", (req, res) => {
