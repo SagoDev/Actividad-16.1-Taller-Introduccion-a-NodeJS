@@ -54,7 +54,7 @@ app.delete("/people/:index", (req, res) => {
   let index = parseInt(req.params.index);
 
   if (index >= 0 && index < people.length) {
-    people.splice(index, 1);
+    people.splice(index-1, 1);
   }
   res.json(people);
 });
