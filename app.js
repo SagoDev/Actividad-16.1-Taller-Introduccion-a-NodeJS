@@ -22,7 +22,8 @@ app.get("/people/:index", (req, res) => {
     (importante no confundir con la "query", que serían los parámetros que se colocan 
     luego del signo "?" en la URL)
    */
-  res.json(people[req.params.index]); // Enviamos el elemento solicitado por su índice
+    let i = req.params.index;
+  res.json(people[i-1]); // Enviamos el elemento solicitado por su índice
 });
 
 app.post("/people", (req, res) => {
@@ -38,25 +39,25 @@ app.put("/people/:index", (req, res) => {
   /* COMPLETA EL CÓDIGO NECESARIO:
     Para que se pueda actualizar el objeto asociado al índice indicado en la URL 
    */
-  let index = req.params.index; // Guardamos el índice de los parámetros en la URL
+  let i = req.params.index; // Guardamos el índice de los parámetros en la URL
 
   for (let property in req.body) {
-    people[index-1][property] = req.body[property];
+    people[i-1][property] = req.body[property];
   } // Recorremos el body de la request para actualizar los campos del elemento seleccionado
 
-  res.json(people); // El servidor responde con el array actualizado
+  res.json(people[i-1]); // El servidor responde con el array actualizado
 });
 
 app.delete("/people/:index", (req, res) => {
   /* COMPLETA EL CÓDIGO NECESARIO:
     Para que se pueda eliminar el objeto asociado al índice indicado en la URL 
   */
-  let index = parseInt(req.params.index);
+  let i = parseInt(req.params.index);
 
-  if (index >= 0 && index < people.length) {
-    people.splice(index-1, 1);
+  if (i >= 0 && i < people.length) {
+    people.splice(i-1, 1);
   }
-  res.json(people);
+  res.json(people[i-1]);
 });
 
 // Esta línea inicia el servidor para que escuche peticiones en el puerto indicado
