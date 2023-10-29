@@ -32,7 +32,7 @@ app.post("/people", (req, res) => {
 
   people.push(req.body); // Añadimos un nuevo elemento al array
 
-  res.json(req.body); // Le respondemos al cliente el objeto añadido
+  res.json(people); // Le respondemos al cliente el objeto añadido
 });
 
 app.put("/people/:index", (req, res) => {
@@ -54,10 +54,9 @@ app.delete("/people/:index", (req, res) => {
   */
   let i = parseInt(req.params.index);
 
-  if (i >= 0 && i < people.length) {
-    people.splice(i-1, 1);
-  }
-  res.json(people[i-1]);
+  people.splice(i-1, 1);
+  res.json(people);
+  
 });
 
 // Esta línea inicia el servidor para que escuche peticiones en el puerto indicado
